@@ -1,6 +1,7 @@
 mod symbols;
 mod server;
 mod utils;
+mod components;
 
 use self::symbols::{Token, Lws, Text, Separators};
 
@@ -160,15 +161,15 @@ pub(super) struct Response {
         EntityHeader(EntityHeader),
     }
         enum ResponseHeader {
-            AcceptRanges,
-            Age,
-            Etag,
-            LOcation,
-            ProxyAuthenticate,
-            RetryAfter,
-            Server,
-            Vary,
-            WwwAuthenticate,
+            AcceptRanges(String),
+            Age(String),
+            Etag(String),
+            Location(String),
+            ProxyAuthenticate(String),
+            RetryAfter(String),
+            Server(String),
+            Vary(String),
+            WwwAuthenticate(String),
         }
 enum EntityHeader {
     Allow(String),
