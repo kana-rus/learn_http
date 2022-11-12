@@ -3,4 +3,5 @@ pub(super) enum ParseError {
     SplitLineError(String),
     InvalidUri(String),
     InvalidVersion(String),
+    UnknownHeader(String),
 }
