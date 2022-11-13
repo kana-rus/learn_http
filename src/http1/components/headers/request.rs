@@ -15,6 +15,8 @@ use crate::http1::components::{
 pub(crate) struct Accept(
     Vec<(MediaType, Option<Qvalue>)>
 );
+// pub(crate) struct AcceptCharset
+// what's the list of charset ?
 pub(crate) struct AcceptEncoding(
     Vec<(ContentCoding, Option<Qvalue>)>
 );
@@ -60,7 +62,9 @@ pub(crate) struct Range(
     Vec<RangeInclusive<usize>>
 );
 pub(crate) struct Referer(
-    URI
+    URI // or relative URI, but relative URI can
+    // imediately converted to (absolute) URI
+    // just when parsing given TCP stream
 );
 pub(crate) struct TE(
     Vec<TransferCodingAcception>
