@@ -1,8 +1,14 @@
+use std::ops::RangeInclusive;
 use crate::http1::components::{
     media_type::MediaType,
     qvalue::Qvalue,
-    coding::{ContentCoding, Base64, MD5, Token68},
-    language_tag::LanguageTag
+    coding::ContentCoding,
+    language_tag::LanguageTag,
+    email::Email,
+    entity_tag::EntityTag,
+    date::Date,
+    credentials::Credentials,
+    uri::URI,
 };
 
 
@@ -15,8 +21,54 @@ pub(crate) struct AcceptEncoding(
 pub(crate) struct AcceptLanguage(
     Vec<(LanguageTag, Option<Qvalue>)>
 );
-pub(crate) enum Authorization {
-    Basic(Base64),
-    Bearer(Token68),
-    Digest(MD5),
+pub(crate) struct Authorization(
+    Credentials
+);
+pub(crate) enum Expect {
+    Continue,
 }
+pub(crate) struct From(
+    Email
+);
+pub(crate) struct Host {
+    host: String,
+    port: Option<u16>,
+}
+pub(crate) struct IfMatch(
+    Vec<EntityTag>
+);
+pub(crate) struct IfModifiedSince(
+    Date
+);
+pub(crate) struct IfNoneMatch(
+    Vec<EntityTag>
+);
+pub(crate) enum IfRange {
+    EntityTag(EntityTag),
+    Date(Date),
+}
+pub(crate) struct IfUnmodifiedSince(
+    Date
+);
+pub(crate) struct MaxForwords(
+    u8
+);
+pub(crate) struct ProxyAuthorization(
+    Credentials
+);
+pub(crate) struct Range(
+    Vec<RangeInclusive<usize>>
+);
+pub(crate) struct Referer(
+    URI
+);
+pub(crate) struct TE(
+    Vec<TransferCodingAcception>
+);
+    enum TransferCodingAcception {
+        Trailer,
+        Extension(ContentCoding, Qvalue),
+    }
+pub(crate) struct UserAgent(
+    Vec<String>
+);
